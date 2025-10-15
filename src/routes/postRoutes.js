@@ -1,6 +1,9 @@
 const { Router } = require('express')
 const postController = require('../controllers/postController')
-const postRouter = Router()
+const commentController = require('../controllers/commentController')
+const postImageController = require('../controllers/post_imageController')
+const tagController = require('../controllers/tagController')
+const router = Router()
 
 
 router.get('/', postController.obtenerPosts)

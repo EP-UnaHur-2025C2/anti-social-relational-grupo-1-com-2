@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const tagController = require('../controllers/tagController')
-const tagRouter = Router()
+const router = Router()
 
 
 router.get('/', tagController.obtenerTags)

@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const commentController = require('../controllers/commentController')
-const commentRouter = Router()
+const router = Router()
 
 
 router.get('/', commentController.obtenerComments)
