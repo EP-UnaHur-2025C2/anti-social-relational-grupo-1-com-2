@@ -10,16 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Post.belongsTo(models.User, { foreignKey: 'userId' })
+      Post.hasMany(models.Comment, { foreignKey: 'postId' })
+      Post.hasMany(models.PostImage, { foreignKey: 'postId' })
+      Post.belongsToMany(models.Tag, { through: 'PostTag', foreignKey: 'postId', otherKey: 'tagId' } )
     }
   }
   Post.init({
     texto:{
       type : DataTypes.STRING,
-      allowNull : false
-    },
-    fecha:{
-      type: DataTypes.DATE,
       allowNull : false
     }
   }, {

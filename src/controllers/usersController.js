@@ -1,5 +1,4 @@
-const { default: ConnectionAcquireTimeoutError } = require('sequelize/lib/errors/connection/connection-acquire-timeout-error')
-const { User, Post } = require('../../db/models')
+const { User } = require('../../db/models')
 
 
 const obtenerUsuarios = async (req,res) => {
@@ -57,7 +56,7 @@ const actualizarUsuario = async (req,res) => {
 const eliminarUsuario = async (req, res) => {
     try {
         const id = req.params.id
-        const user = await User,findByPk(id)
+        const user = await User.findByPk(id)
         if(!user){
             res.status(400).json({message: 'Usuario no encontrado'})
         }

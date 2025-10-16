@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Comment.belongsTo(models.User, { foreignKey: 'userId' })
+      Comment.belongsTo(models.Post, { foreignKey: 'postId' })
     }
   }
   Comment.init({
@@ -18,12 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull: false
     },
-    fecha:{
-      type : DataTypes.DATE,
-      allowNull : false
-    },
     esVisible:{
-      type: DataTypes,BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull : false
     } 
   }, {
