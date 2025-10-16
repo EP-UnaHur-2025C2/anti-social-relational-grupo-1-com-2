@@ -14,9 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Comment.init({
-    texto: DataTypes.STRING,
-    fecha: DataTypes.DATE,
-    esVisible: DataTypes.BOOLEAN
+    texto:{
+      type : DataTypes.STRING,
+      allowNull: false
+    },
+    fecha:{
+      type : DataTypes.DATE,
+      allowNull : false
+    },
+    esVisible:{
+      type: DataTypes,BOOLEAN,
+      allowNull : false
+    } 
   }, {
     sequelize,
     modelName: 'Comment',

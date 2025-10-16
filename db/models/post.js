@@ -14,11 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
-    texto: DataTypes.STRING,
-    fecha: DataTypes.DATE
+    texto:{
+      type : DataTypes.STRING,
+      allowNull : false
+    },
+    fecha:{
+      type: DataTypes.DATE,
+      allowNull : false
+    }
   }, {
     sequelize,
-    modelName: 'post',
+    modelName: 'Post',
   });
   return Post;
 };

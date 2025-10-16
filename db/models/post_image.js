@@ -14,10 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post_image.init({
-    url: DataTypes.STRING
+    url:{
+      type :DataTypes.STRING,
+      allowNull : false
+    }
   }, {
     sequelize,
-    modelName: 'post_image',
+    modelName: 'Post_image',
   });
   return Post_image;
 };

@@ -14,10 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tag.init({
-    texto: DataTypes.STRING
+    texto:{
+      type: DataTypes.STRING,
+      allowNull : false
+    } 
   }, {
     sequelize,
-    modelName: 'tag',
+    modelName: 'Tag',
   });
   return Tag;
 };
