@@ -29,3 +29,8 @@ const validarCreateComment = (req,res,next) => {
     req.body = value
     next()
 }
+
+module.exports = {
+    validarIdParams,
+    validarCreateComment
+}
