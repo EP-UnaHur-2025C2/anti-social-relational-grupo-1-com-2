@@ -22,7 +22,7 @@ const validarIdParams = (req,res,next) => {
 const validarCreateUser = (req,res,next) =>{
     const {error, value} = createUserSchema.validate(req.body)
     if(error){
-        return res.status(400).json({message: 'No se pudo crear la serie'})
+        return res.status(400).json({message: 'No se pudo crear el usuario'})
     }
     req.body = value
     next()
