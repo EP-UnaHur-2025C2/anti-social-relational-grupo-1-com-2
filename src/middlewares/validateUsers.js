@@ -5,7 +5,7 @@ const idParamsSchema = Joi.object({
 })
 
 const createUserSchema = Joi.object({
-    nickName : Joi.string().min(5).trim().required(),
+    nickName : Joi.string().min(3).trim().required(),
     email : Joi.string().email().required()
 })
 

@@ -11,4 +11,4 @@ router.post('/', validarCreateComment,commentController.crearComment)
 router.put('/:id', validarIdParams,commentController.actualizarComment)
 router.delete('/:id', validarIdParams,commentController.eliminarComment)
 
-module.exports = commentRouter
+module.exports = router

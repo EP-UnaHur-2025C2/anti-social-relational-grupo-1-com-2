@@ -13,6 +13,6 @@ router.put('/:id', validarIdParams,usersController.actualizarUsuario)
 router.delete('/:id', validarIdParams, usersController.eliminarUsuario)
 
 // Rutas para posts de un usuario
-router.get('/:userId/posts', validarIdParams, postController.obtenerPostsDelUsuario)
-
-module.exports = usersRouter
+router.get('/:id/post',validarIdParams, postController.obtenerPostsDelUsuario)
+router.post('/:id/post',validarIdParams, postController.crearPost)
+module.exports = router 

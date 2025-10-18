@@ -9,4 +9,4 @@ router.post('/', postImageController.crearPostImage)
 router.put('/:id', postImageController.actualizarPostImage)
 router.delete('/:id', postImageController.eliminarPostImage)
 
-module.exports = postImageRouter
+module.exports = router

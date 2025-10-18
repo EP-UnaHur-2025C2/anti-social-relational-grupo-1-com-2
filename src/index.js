@@ -2,10 +2,10 @@ const express = require('express')
 const db = require('../db/models')
 const router = require('./routes/usersRoutes')
 const postRouter = require('./routes/postRoutes')
-const postImageRouter = require('./routes/post_imageRoutes')
+const postImageRouter = require('./routes/post_imagesRoutes')
 const commentRouter = require('./routes/commentRoutes')
 const tagRouter = require('./routes/tagRoutes')
-require('dotenv').config()
+//require('dotenv').config()
 const app = express()
 
 app.use(express.json())
@@ -21,5 +21,5 @@ const PORT = process.env.PORT || 3000
 
 app.listen(PORT, async () => {
     console.log(`El servidor esta corriendo en el puerto ${PORT}`)
-    await db.sequelize.sync({force:true})
+    await db.sequelize.sync()
 })

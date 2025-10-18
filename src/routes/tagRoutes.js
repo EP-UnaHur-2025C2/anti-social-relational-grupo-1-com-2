@@ -13,4 +13,4 @@ router.delete('/:id', tagController.eliminarTag)
 // Rutas para posts relacionados con una etiqueta
 router.get('/:tagId/posts', postController.obtenerPostsDeLaEtiqueta)
 
-module.exports = tagRouter
+module.exports = router

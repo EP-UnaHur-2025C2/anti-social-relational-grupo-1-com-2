@@ -15,7 +15,7 @@ const obtenerPost = async (req, res) => {
         const id = req.params.id
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(404).json({message: 'Post no encontrado'})
+            return res.status(404).json({message: 'Post no encontrado'})
         }
         res.status(200).json(post)
     }
@@ -26,9 +26,15 @@ const obtenerPost = async (req, res) => {
 
 const crearPost = async (req, res) => { 
     try { 
+        const id = req.params.id
+        const user = await User.findByPk(id)
         const {texto} = req.body
+        if(!user) {
+            return res.status(404).json({message: 'El usuario no existe'})
+        }
         const post = await Post.create({
-            texto
+            texto,
+            userId: id
         })
         res.status(201).json(post)
     }
@@ -43,7 +49,7 @@ const actualizarPost = async (req, res) => {
         const { texto } = req.body
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(404).json({message: 'Post no encontrado'})
+           return res.status(404).json({message: 'Post no encontrado'})
         }
         await post.update({texto})
         res.status(201).json(post)
@@ -58,7 +64,7 @@ const eliminarPost = async (req, res) => {
         const id = req.params.id
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(404).json({message: 'Post no encontrado'})
+           return res.status(404).json({message: 'Post no encontrado'})
         }
         await post.destroy()
         res.status(200).json({message: 'Post eliminado'})
