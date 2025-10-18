@@ -12,4 +12,13 @@ router.post('/', postController.crearPost)
 router.put('/:id', postController.actualizarPost)
 router.delete('/:id', postController.eliminarPost)
 
+// Rutas para comentarios relacionados con un post
+router.get('/:postId/comments', commentController.obtenerComentariosDelPost)
+
+// Rutas para imágenes relacionadas con un post
+router.get('/:postId/images', postImageController.obtenerImagenesDelPost)
+
+// Rutas para etiquetas relacionadas con un post
+router.get('/:postId/tags', tagController.obtenerEtiquetasDelPost)
+
 module.exports = postRouter

@@ -1,4 +1,4 @@
-const { Post_image } = require('../../db/models')
+const { Post_image, Post } = require('../../db/models')
 
 const obtenerPostsImage = async (req, res) => { 
     try { 
@@ -66,10 +66,26 @@ const eliminarPostImage = async (req, res) => {
     }
 }
 
+const obtenerImagenesDelPost = async (req, res) => { 
+    try {
+        const postId = req.params.postId
+        const post = await Post.findByPk(postId, {
+            include: Post_image
+        })
+        if (!post) {
+            return res.status(404).json({ error: 'Post no encontrado' })
+        }
+        res.json(post)
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener las imágenes del post' })
+    }
+}
+
 module.exports = {
   obtenerPostsImage,
   obtenerPostImage,
   crearPostImage,
   actualizarPostImage,
-  eliminarPostImage
+  eliminarPostImage,
+  obtenerImagenesDelPost
 }

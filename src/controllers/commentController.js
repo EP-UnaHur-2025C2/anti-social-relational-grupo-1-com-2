@@ -1,12 +1,8 @@
-const { User, Comment } = require('../../db/models')
-const comment = require('../../db/models/comment')
-
-
-
+const { Post, Comment } = require('../../db/models')
 
 const obtenerComments = async (req,res) => {
     try {
-        const comentarios = await Comment.findAll
+        const comentarios = await Comment.findAll()
         res.status(200).json(comentarios)
         
     } catch (error) {
@@ -20,7 +16,7 @@ const obtenerComment = async (req,res) => {
         const id = req.params.id
         const comment = await comment.findByPk(id)
         if(!comment){
-            res.status(400).json({message: 'Comentario no encontrado'})
+            res.status(404).json({message: 'Comentario no encontrado'})
         }
         res.status(200).json(comment)
     } catch (error) {
@@ -50,7 +46,7 @@ const actualizarComment = async (req,res) => {
         const comment = await comment.findByPk(id)
 
         if(!comment){
-            res.status(400).json({message: 'Comentario no encontrado'})
+            res.status(404).json({message: 'Comentario no encontrado'})
         }
         await comment.update({texto, fecha, esVisible})
         res.json(comment)
@@ -64,7 +60,7 @@ const eliminarComment = async (req,res) => {
         const id = req.params.id
         const comment = await Comment.findByPk(id)
         if(!comment){
-            res.status(400).json({message: 'Comentario no encontrado'})
+            res.status(404).json({message: 'Comentario no encontrado'})
         }
         await comment.destroy()
         res.status(200).send()
@@ -73,10 +69,26 @@ const eliminarComment = async (req,res) => {
     }
 }
 
+const obtenerComentariosDelPost = async (req, res) => { 
+    try {
+        const postId = req.params.postId
+        const post = await Post.findByPk(postId, {
+            include: Comment
+        })
+        if(!post){
+            return res.status(404).json({message: 'Post no encontrado'})
+        }
+        res.status(200).json(post)
+    } catch (error) {
+        res.status(500).json({message: 'Error al obtener los comentarios del post'})
+    }
+}
+
 module.exports = {
     obtenerComments,
     obtenerComment,
     crearComment,
     actualizarComment,
-    eliminarComment
+    eliminarComment,
+    obtenerComentariosDelPost
 }

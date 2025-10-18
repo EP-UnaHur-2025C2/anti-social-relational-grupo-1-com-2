@@ -16,7 +16,7 @@ const obtenerUsuario = async (req,res) => {
         const id = req.params.id
         const user = await User.findByPk(id)
         if(!user){
-            res.status(400).json({message: 'Usuario no encontrado'})
+            res.status(404).json({message: 'Usuario no encontrado'})
         }
         res.status(200).json(user)
     } catch (error) {
@@ -44,7 +44,7 @@ const actualizarUsuario = async (req,res) => {
         const {nickName, email} = req.body
         const user = await User.findByPk(id)
         if(!user){
-            res.status(400).json({message: 'Usuario no encontrado'})
+            res.status(404).json({message: 'Usuario no encontrado'})
         }
         await user.update({nickName, email})
         res.status(201).json(user)
@@ -58,7 +58,7 @@ const eliminarUsuario = async (req, res) => {
         const id = req.params.id
         const user = await User.findByPk(id)
         if(!user){
-            res.status(400).json({message: 'Usuario no encontrado'})
+            res.status(404).json({message: 'Usuario no encontrado'})
         }
         await user.destroy()
         res.status(200).json({message: 'Actor eliminado correctamente'})

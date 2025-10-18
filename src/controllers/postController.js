@@ -1,4 +1,4 @@
-const { Post } = require('../../db/models')
+const { Post, User, Tag } = require('../../db/models')
 
 const obtenerPosts = async (req, res) => { 
     try { 
@@ -15,7 +15,7 @@ const obtenerPost = async (req, res) => {
         const id = req.params.id
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(400).json({message: 'Post no encontrado'})
+            res.status(404).json({message: 'Post no encontrado'})
         }
         res.status(200).json(post)
     }
@@ -43,7 +43,7 @@ const actualizarPost = async (req, res) => {
         const { texto } = req.body
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(400).json({message: 'Post no encontrado'})
+            res.status(404).json({message: 'Post no encontrado'})
         }
         await post.update({texto})
         res.status(201).json(post)
@@ -58,7 +58,7 @@ const eliminarPost = async (req, res) => {
         const id = req.params.id
         const post = await Post.findByPk(id)
         if(!post){
-            res.status(400).json({message: 'Post no encontrado'})
+            res.status(404).json({message: 'Post no encontrado'})
         }
         await post.destroy()
         res.status(200).json({message: 'Post eliminado'})
@@ -68,10 +68,45 @@ const eliminarPost = async (req, res) => {
     }
 }
 
+const obtenerPostsDelUsuario = async (req, res) => { 
+    try {
+        const userId = req.params.userId
+        const user = await User.findByPk(userId, {
+            include: Post
+        })
+        if(!user){
+            return res.status(404).json({message: 'Usuario no encontrado'})
+        }
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({message: 'Error al obtener posts del usuario'})
+    }
+}
+
+const obtenerPostsDeLaEtiqueta = async (req, res) => { 
+    try {
+        const tagId = req.params.tagId
+        const tag = await Tag.findByPk(tagId, {
+            include: [{
+                model: Post,
+                through: { attributes: [] }
+            }]
+        })
+        if(!tag){
+            return res.status(404).json({message: 'Etiqueta no encontrada'})
+        }
+        res.status(200).json(tag)
+    } catch (error) {
+        res.status(500).json({message: 'Error al obtener posts de la etiqueta'})
+    }
+}
+
 module.exports = {
     obtenerPosts,
     obtenerPost,
     crearPost,
     actualizarPost,
-    eliminarPost
+    eliminarPost,
+    obtenerPostsDelUsuario,
+    obtenerPostsDeLaEtiqueta
 }
