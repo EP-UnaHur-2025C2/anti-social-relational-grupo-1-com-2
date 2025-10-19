@@ -1,5 +1,6 @@
 const { Op } = require('sequelize')
 const { Post, Comment, User } = require('../../db/models')
+require('dotenv').config()
 
 const obtenerComments = async (req,res) => {
     try {
@@ -73,8 +74,7 @@ const obtenerComentariosDelPost = async (req, res) => {
     try {
         const postId = req.params.id
         const fechaLimite = new Date()
-        fechaLimite.setMonth(fechaLimite.getMonth() - 6) 
-        //parseInt(process.env.COMMENTS_MONTH_LIMIT || '1'))
+        fechaLimite.setMonth(fechaLimite.getMonth() - proccess.env.MAX_MESES_COMENTARIOS)
         const post = await Post.findByPk(postId, {
             include: [{
                 model: Comment,

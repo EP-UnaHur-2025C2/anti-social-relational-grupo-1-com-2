@@ -5,7 +5,7 @@ const postRouter = require('./routes/postRoutes')
 const postImageRouter = require('./routes/post_imagesRoutes')
 const commentRouter = require('./routes/commentRoutes')
 const tagRouter = require('./routes/tagRoutes')
-//require('dotenv').config()
+require('dotenv').config()
 const app = express()
 
 app.use(express.json())

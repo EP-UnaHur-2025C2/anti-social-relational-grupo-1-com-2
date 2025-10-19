@@ -20,6 +20,6 @@ router.get('/:id/post',validateIdParams, postController.obtenerPostsDelUsuario)
 router.post('/:id/post', validateIdParams, postController.crearPost)
 
 // Rutas para comentarios de un usuario
-router.post('/:id/post/:postId/comment',validateIdParams, validatePostIdParams, commentController.crearComment)
+router.post('/:id/post/:postId/comment', commentController.crearComment) //comprobar middlewares chequeo ids (no funcionan bien)
 
 module.exports = router 
