@@ -68,13 +68,14 @@ const obtenerEtiquetasDelPost = async (req, res) => {
         const post = await Post.findByPk(postId, {
             include: [{
                 model: Tag,
-                through: { attributes: [] } // Excluir atributos de la tabla intermedia
+                attributes: ['texto'],
+                through: { attributes: [] }
             }]
         })
         if (!post) {
             return res.status(404).json({ message: 'Post no encontrado' })
         }
-        res.status(200).json(post)
+        res.status(200).json(post.Tags)
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener etiquetas del post' })
     }

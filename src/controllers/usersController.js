@@ -1,4 +1,4 @@
-const { User } = require('../../db/models')
+const { User, Post } = require('../../db/models')
 
 
 const obtenerUsuarios = async (req,res) => {
@@ -14,7 +14,9 @@ const obtenerUsuarios = async (req,res) => {
 const obtenerUsuario = async (req,res) => {
     try {
         const id = req.params.id
-        const user = await User.findByPk(id)
+        const user = await User.findByPk(id, {
+            include: Post
+        })
         if(!user){
             res.status(404).json({message: 'Usuario no encontrado'})
         }

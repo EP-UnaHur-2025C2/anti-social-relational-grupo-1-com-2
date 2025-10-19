@@ -70,7 +70,7 @@ const obtenerImagenesDelPost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ error: "Post no encontrado" });
     }
-    res.json(post);
+    res.json(post.Post_images)
   } catch (error) {
     res.status(500).json({ error: "Error al obtener las imágenes del post" });
   }
@@ -91,6 +91,18 @@ const agregarImagenesAlPost = async (req, res) => {
   }
 };
 
+const quitarImagenesDelPost = async (req, res) => { 
+  try {
+    const {imagenIds = []} = req.body;
+    const postId = req.params.postId;
+    const post = await Post.findByPk(postId)
+    await post.removePost_images(imagenIds)
+    res.status(200).json({ message: "Imagen/es eliminada/s del post correctamente" });
+  } catch (error) {
+    res.status(500).json({ error: "Error al eliminar la/s imagenes del post" });
+  }
+}
+
 module.exports = {
   obtenerPostsImage,
   obtenerPostImage,
@@ -98,5 +110,6 @@ module.exports = {
   actualizarPostImage,
   eliminarPostImage,
   obtenerImagenesDelPost,
-  agregarImagenesAlPost
+  agregarImagenesAlPost,
+  quitarImagenesDelPost
 };

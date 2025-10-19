@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const { Post, Comment, User } = require('../../db/models')
 
 const obtenerComments = async (req,res) => {
@@ -73,11 +74,15 @@ const obtenerComentariosDelPost = async (req, res) => {
         const postId = req.params.postId
         const post = await Post.findByPk(postId, {
             include: Comment
+            /*where: {
+                //acá va la logica de filtrar por meses con variable de entorno
+            }*/
+
         })
         if(!post){
             return res.status(404).json({message: 'Post no encontrado'})
         }
-        res.status(200).json(post)
+        res.status(200).json(post.Comments)
     } catch (error) {
         res.status(500).json({message: 'Error al obtener los comentarios del post'})
     }

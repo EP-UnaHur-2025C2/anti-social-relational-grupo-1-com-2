@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Post.init({
     texto:{
       type : DataTypes.STRING,
-      allowNull : false
+      allowNull: false
     }
   }, {
     sequelize,

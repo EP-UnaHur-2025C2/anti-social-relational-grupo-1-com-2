@@ -18,6 +18,7 @@ router.get('/:postId/comments', commentController.obtenerComentariosDelPost)
 // Rutas para imágenes relacionadas con un post
 router.get('/:postId/images', postImageController.obtenerImagenesDelPost)
 router.post('/:postId/images', postImageController.agregarImagenesAlPost)
+router.delete('/:postId/images', postImageController.quitarImagenesDelPost)
 
 // Rutas para etiquetas relacionadas con un post
 router.get('/:postId/tags', tagController.obtenerEtiquetasDelPost)

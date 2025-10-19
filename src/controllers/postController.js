@@ -1,4 +1,4 @@
-const { Post, User, Tag } = require('../../db/models')
+const { Post, User, Tag, Comment } = require('../../db/models')
 
 const obtenerPosts = async (req, res) => { 
     try { 
@@ -13,7 +13,9 @@ const obtenerPosts = async (req, res) => {
 const obtenerPost = async (req, res) => {
     try { 
         const id = req.params.id
-        const post = await Post.findByPk(id)
+        const post = await Post.findByPk(id, {
+            include: [User, Tag, Comment]
+        })
         if(!post){
             return res.status(404).json({message: 'Post no encontrado'})
         }
@@ -80,7 +82,7 @@ const obtenerPostsDelUsuario = async (req, res) => {
             if(!user){
             return res.status(404).json({message: 'Usuario no encontrado'})
         }
-        res.status(200).json(user)
+        res.status(200).json(user.Posts)
     } catch (error) {
         res.status(500).json({message: 'Error al obtener posts del usuario'})
     }
@@ -98,7 +100,7 @@ const obtenerPostsDeLaEtiqueta = async (req, res) => {
         if(!tag){
             return res.status(404).json({message: 'Etiqueta no encontrada'})
         }
-        res.status(200).json(tag)
+        res.status(200).json(tag.Posts)
     } catch (error) {
         res.status(500).json({message: 'Error al obtener posts de la etiqueta'})
     }
