@@ -21,5 +21,6 @@ router.post('/:postId/images', postImageController.agregarImagenesAlPost)
 
 // Rutas para etiquetas relacionadas con un post
 router.get('/:postId/tags', tagController.obtenerEtiquetasDelPost)
+router.post('/:postId/tags', tagController.agregarEtiquetasAlPost)
 
 module.exports = router

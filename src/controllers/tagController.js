@@ -80,11 +80,25 @@ const obtenerEtiquetasDelPost = async (req, res) => {
     }
 }
 
+const agregarEtiquetasAlPost = async (req, res) => { 
+    try {
+        const { tagIds = [] } = req.body
+        const postId = req.params.postId
+        const post = await Post.findByPk(postId)
+        //hacer middleware para verificar que el post exista
+        await post.addTags(tagIds)
+        res.status(200).json({ message: 'Etiquetas agregadas al post correctamente' })
+    } catch (error) {
+        res.status(500).json({ message: 'Error al agregar etiquetas al post' })
+    }
+}
+
 module.exports = {
     obtenerTags,
     obtenerTag,
     crearTag,
     actualizarTag,
     eliminarTag,
-    obtenerEtiquetasDelPost
+    obtenerEtiquetasDelPost,
+    agregarEtiquetasAlPost
 }

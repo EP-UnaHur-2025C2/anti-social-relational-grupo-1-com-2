@@ -32,10 +32,7 @@ const crearPost = async (req, res) => {
         if(!user) {
             return res.status(404).json({message: 'El usuario no existe'})
         }
-        const post = await Post.create({
-            texto,
-            userId: id
-        })
+        const post = await user.createPost({texto})
         res.status(201).json(post)
     }
     catch (error) { 
@@ -76,11 +73,11 @@ const eliminarPost = async (req, res) => {
 
 const obtenerPostsDelUsuario = async (req, res) => { 
     try {
-        const userId = req.params.userId
+        const userId = req.params.id
         const user = await User.findByPk(userId, {
             include: Post
         })
-        if(!user){
+            if(!user){
             return res.status(404).json({message: 'Usuario no encontrado'})
         }
         res.status(200).json(user)

@@ -78,7 +78,7 @@ const obtenerImagenesDelPost = async (req, res) => {
 
 const agregarImagenesAlPost = async (req, res) => {
   try {
-    const [imagenIds = {}] = req.body;
+    const {imagenIds = []} = req.body;
     const postId = req.params.postId;
     const post = await Post.findByPk(postId);
     /*if (!post) {

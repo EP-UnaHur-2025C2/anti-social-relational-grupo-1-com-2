@@ -1,4 +1,4 @@
-const { Post, Comment } = require('../../db/models')
+const { Post, Comment, User } = require('../../db/models')
 
 const obtenerComments = async (req,res) => {
     try {
@@ -26,12 +26,11 @@ const obtenerComment = async (req,res) => {
 
 const crearComment = async (req,res) => {
     try {
+        const id = req.params.id
+        const postId = req.params.postId
+        const user = await User.findByPk(id)
         const {texto, fecha, esVisible} = req.body
-        const comment = await Comment.crate({
-            texto,
-            fecha,
-            esVisible
-        })
+        const comment = await user.createComment({ texto, fecha, esVisible, postId})
         res.status(201).json({comment})
     } catch (error) {
         res.status(500).json({message: 'Error al crear el comentario'})
