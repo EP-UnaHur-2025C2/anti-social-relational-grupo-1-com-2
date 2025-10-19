@@ -63,7 +63,7 @@ const eliminarPostImage = async (req, res) => {
 
 const obtenerImagenesDelPost = async (req, res) => {
   try {
-    const postId = req.params.postId;
+    const postId = req.params.id;
     const post = await Post.findByPk(postId, {
       include: Post_image,
     });
@@ -79,7 +79,7 @@ const obtenerImagenesDelPost = async (req, res) => {
 const agregarImagenesAlPost = async (req, res) => {
   try {
     const {imagenIds = []} = req.body;
-    const postId = req.params.postId;
+    const postId = req.params.id;
     const post = await Post.findByPk(postId);
     /*if (!post) {
             return res.status(404).json({ error: 'Post no encontrado' })
@@ -94,7 +94,7 @@ const agregarImagenesAlPost = async (req, res) => {
 const quitarImagenesDelPost = async (req, res) => { 
   try {
     const {imagenIds = []} = req.body;
-    const postId = req.params.postId;
+    const postId = req.params.id;
     const post = await Post.findByPk(postId)
     await post.removePost_images(imagenIds)
     res.status(200).json({ message: "Imagen/es eliminada/s del post correctamente" });

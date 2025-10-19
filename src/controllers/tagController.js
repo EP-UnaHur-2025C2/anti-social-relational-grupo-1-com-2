@@ -64,7 +64,7 @@ const eliminarTag = async (req, res) => {
 
 const obtenerEtiquetasDelPost = async (req, res) => { 
     try {
-        const postId = req.params.postId
+        const postId = req.params.id
         const post = await Post.findByPk(postId, {
             include: [{
                 model: Tag,
@@ -84,7 +84,7 @@ const obtenerEtiquetasDelPost = async (req, res) => {
 const agregarEtiquetasAlPost = async (req, res) => { 
     try {
         const { tagIds = [] } = req.body
-        const postId = req.params.postId
+        const postId = req.params.id
         const post = await Post.findByPk(postId)
         //hacer middleware para verificar que el post exista
         await post.addTags(tagIds)

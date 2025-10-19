@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const commentController = require('../controllers/commentController')
-const {validarIdParams, validarCreateComment} = require('../middlewares/validateComment')
+const validarCreateComment = require('../middlewares/validateComment').validateCreateComment
+const validarIdParams = require('../middlewares/validateIdParams').validateIdParams
 
 const router = Router()
 

@@ -3,25 +3,25 @@ const postController = require('../controllers/postController')
 const commentController = require('../controllers/commentController')
 const postImageController = require('../controllers/post_imageController')
 const tagController = require('../controllers/tagController')
+const validateIdParams = require('../middlewares/validateIdParams').validateIdParams
 const router = Router()
 
 
 router.get('/', postController.obtenerPosts)
-router.get('/:id', postController.obtenerPost)
-//router.post('/', postController.crearPost)
-router.put('/:id', postController.actualizarPost)
-router.delete('/:id', postController.eliminarPost)
+router.get('/:id',validateIdParams, postController.obtenerPost)
+router.put('/:id',validateIdParams, postController.actualizarPost)
+router.delete('/:id',validateIdParams, postController.eliminarPost)
 
 // Rutas para comentarios relacionados con un post
-router.get('/:postId/comments', commentController.obtenerComentariosDelPost)
+router.get('/:id/comments',validateIdParams, commentController.obtenerComentariosDelPost)
 
 // Rutas para imágenes relacionadas con un post
-router.get('/:postId/images', postImageController.obtenerImagenesDelPost)
-router.post('/:postId/images', postImageController.agregarImagenesAlPost)
-router.delete('/:postId/images', postImageController.quitarImagenesDelPost)
+router.get('/:id/images',validateIdParams, postImageController.obtenerImagenesDelPost)
+router.post('/:id/images',validateIdParams, postImageController.agregarImagenesAlPost)
+router.delete('/:id/images',validateIdParams, postImageController.quitarImagenesDelPost)
 
 // Rutas para etiquetas relacionadas con un post
-router.get('/:postId/tags', tagController.obtenerEtiquetasDelPost)
-router.post('/:postId/tags', tagController.agregarEtiquetasAlPost)
+router.get('/:id/tags',validateIdParams, tagController.obtenerEtiquetasDelPost)
+router.post('/:id/tags',validateIdParams, tagController.agregarEtiquetasAlPost)
 
 module.exports = router

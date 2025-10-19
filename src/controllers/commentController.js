@@ -1,4 +1,4 @@
-const { where } = require('sequelize')
+const { Op } = require('sequelize')
 const { Post, Comment, User } = require('../../db/models')
 
 const obtenerComments = async (req,res) => {
@@ -71,14 +71,23 @@ const eliminarComment = async (req,res) => {
 
 const obtenerComentariosDelPost = async (req, res) => { 
     try {
-        const postId = req.params.postId
+        const postId = req.params.id
+        const fechaLimite = new Date()
+        fechaLimite.setMonth(fechaLimite.getMonth() - 6) 
+        //parseInt(process.env.COMMENTS_MONTH_LIMIT || '1'))
         const post = await Post.findByPk(postId, {
-            include: Comment
-            /*where: {
-                //acá va la logica de filtrar por meses con variable de entorno
-            }*/
-
-        })
+            include: [{
+                model: Comment,
+                where: {
+                    createdAt: {
+                        [Op.gte]: fechaLimite //esto asegura que solo se obtengan los comentarios creados despues de la fecha limite
+                                                //Op significa "operador" y gte es "greater than or equal" (mayor o igual que)
+                    }
+                },
+                required: false //esto asegura que si no hay comentarios que cumplan la condicion, igual se devuelva el post
+            }]
+        });
+        
         if(!post){
             return res.status(404).json({message: 'Post no encontrado'})
         }
