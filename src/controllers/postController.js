@@ -85,7 +85,7 @@ const obtenerPostsDelUsuario = async (req, res) => {
 
 const obtenerPostsDeLaEtiqueta = async (req, res) => {
   try {
-    const tagId = req.params.tagId;
+    const tagId = req.params.id;
     const tag = await Tag.findByPk(tagId, {
       include: [
         {

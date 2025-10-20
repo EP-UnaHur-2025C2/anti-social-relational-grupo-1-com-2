@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const createCommentSchema = Joi.object({
-  texto: Joi.string().alphanum().min(10).trim().required(),
+  texto: Joi.string().alphanum().min(10).required()
 });
 
 const validateCreateComment = (req, res, next) => {

@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const tagParamsSchema = Joi.object({
-  name: Joi.string()
+  texto: Joi.string()
     .pattern(/^#[a-zA-Z0-9_-]+$/)
     .min(2)
     .trim()
@@ -9,13 +9,13 @@ const tagParamsSchema = Joi.object({
 });
 
 const validateTag = (req, res, next) => {
-  const { error } = tagParamsSchema.validate(req.params);
+  const { error, value } = tagParamsSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
-      message:
-        "El tag debe empezar con # y contener solo letras, números, y guinoes",
+      message: "El tag debe empezar con # y contener solo letras, números, y guinoes",
     });
   }
+  req.body = value;
   next();
 };
 

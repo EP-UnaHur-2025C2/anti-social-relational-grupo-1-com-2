@@ -13,7 +13,7 @@ const obtenerComments = async (req, res) => {
 const obtenerComment = async (req, res) => {
   try {
     const id = req.params.id;
-    const comment = await comment.findByPk(id);
+    const comment = await Comment.findByPk(id);
     if (!comment) {
       res.status(404).json({ message: "Comentario no encontrado" });
     }
@@ -44,7 +44,7 @@ const actualizarComment = async (req, res) => {
   try {
     const id = req.params.id;
     const { texto, fecha, esVisible } = req.body;
-    const comment = await comment.findByPk(id);
+    const comment = await Comment.findByPk(id);
 
     if (!comment) {
       res.status(404).json({ message: "Comentario no encontrado" });

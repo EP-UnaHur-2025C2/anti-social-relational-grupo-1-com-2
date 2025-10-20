@@ -11,7 +11,7 @@ const obtenerPostsImage = async (req, res) => {
 
 const obtenerPostImage = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const id = req.params.id;
     const postImage = await Post_image.findByPk(id);
     if (!postImage) {
       return res.status(404).json({ error: "Post de imagen no encontrado" });
@@ -34,7 +34,7 @@ const crearPostImage = async (req, res) => {
 
 const actualizarPostImage = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const id = req.params.id;
     const { url } = req.body;
     const postImage = await Post_image.findByPk(id);
     if (!postImage) {
@@ -49,7 +49,7 @@ const actualizarPostImage = async (req, res) => {
 
 const eliminarPostImage = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const id = req.params.id;
     const postImage = await Post_image.findByPk(id);
     if (!postImage) {
       return res.status(404).json({ error: "Post de imagen no encontrado" });
