@@ -2,810 +2,775 @@
 swagger: "2.0"
 info:
   title: API UnaHur Anti-Social Net - Grupo 1 Comisión 2
-  description: Se encuentra inspirada en plataformas populares que permiten a los
-    usuarios realizar publicaciones y recibir comentarios sobre las mismas.
+  description: Se encuentra inspirada en plataformas populares que permiten a los usuarios realizar publicaciones y recibir comentarios sobre las mismas.
   version: 1.0.0
 host: localhost:3000
 basePath: /
 schemes:
   - http
+tags:
+  - name: User
+    description: Operaciones sobre usuarios
+  - name: Post
+    description: Operaciones sobre publicaciones
+  - name: Comment
+    description: Operaciones sobre comentarios
+  - name: Tag
+    description: Operaciones sobre etiquetas
+  - name: PostImage
+    description: Operaciones sobre imágenes de publicaciones
+
 paths:
-  /users/:
+  # ==================== USER ====================
+  /user/:
     get:
-      description: ""
+      tags:
+        - User
+      summary: Obtener todos los usuarios
+      description: Retorna la lista completa de usuarios registrados
       responses:
         "200":
-          description: OK
+          description: Lista de usuarios obtenida exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - User
+      summary: Crear un nuevo usuario
+      description: Registra un nuevo usuario en el sistema
       parameters:
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - nickName
+              - email
             properties:
               nickName:
-                example: any
+                type: string
+                example: "usuario123"
               email:
-                example: any
+                type: string
+                example: "usuario@example.com"
       responses:
         "201":
-          description: Created
+          description: Usuario creado exitosamente
         "500":
-          description: Internal Server Error
-  "/users/{id}":
+          description: Error interno del servidor
+
+  /user/{id}:
     get:
-      description: ""
+      tags:
+        - User
+      summary: Obtener un usuario por ID
+      description: Retorna la información de un usuario específico
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
       responses:
         "200":
-          description: OK
+          description: Usuario encontrado
         "404":
-          description: Not Found
+          description: Usuario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     put:
-      description: ""
+      tags:
+        - User
+      summary: Actualizar un usuario
+      description: Modifica los datos de un usuario existente
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
         - name: body
           in: body
+          required: true
           schema:
             type: object
             properties:
               nickName:
-                example: any
+                type: string
+                example: "nuevoNick"
               email:
-                example: any
+                type: string
+                example: "nuevo@example.com"
       responses:
         "201":
-          description: Created
+          description: Usuario actualizado exitosamente
         "404":
-          description: Not Found
+          description: Usuario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - User
+      summary: Eliminar un usuario
+      description: Elimina un usuario del sistema
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
       responses:
         "200":
-          description: OK
+          description: Usuario eliminado exitosamente
         "404":
-          description: Not Found
+          description: Usuario no encontrado
         "500":
-          description: Internal Server Error
-  "/users/{id}/post":
+          description: Error interno del servidor
+
+  /user/{id}/post:
     get:
-      description: ""
+      tags:
+        - User
+      summary: Obtener posts de un usuario
+      description: Retorna todas las publicaciones de un usuario específico
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
       responses:
         "200":
-          description: OK
+          description: Posts obtenidos exitosamente
         "404":
-          description: Not Found
+          description: Usuario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - User
+      summary: Crear un post para un usuario
+      description: Crea una nueva publicación asociada a un usuario
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
+                type: string
+                example: "Contenido de la publicación"
       responses:
         "201":
-          description: Created
+          description: Post creado exitosamente
         "404":
-          description: Not Found
+          description: Usuario no encontrado
         "500":
-          description: Internal Server Error
-  "/users/{id}/post/{postId}/comment":
+          description: Error interno del servidor
+
+  /user/{id}/post/{postId}/comment:
     post:
-      description: ""
+      tags:
+        - User
+      summary: Comentar un post
+      description: Crea un comentario en una publicación específica
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del usuario
         - name: postId
           in: path
           required: true
           type: string
+          description: ID del post
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
-              fecha:
-                example: any
+                type: string
+                example: "Texto del comentario"
               esVisible:
-                example: any
+                type: boolean
+                example: true
       responses:
         "201":
-          description: Created
+          description: Comentario creado exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
+
+  # ==================== POST ====================
   /post/:
     get:
-      description: ""
+      tags:
+        - Post
+      summary: Obtener todos los posts
+      description: Retorna la lista completa de publicaciones
       responses:
         "200":
-          description: OK
+          description: Posts obtenidos exitosamente
         "500":
-          description: Internal Server Error
-  "/post/{id}":
+          description: Error interno del servidor
+
+  /post/{id}:
     get:
-      description: ""
+      tags:
+        - Post
+      summary: Obtener un post por ID
+      description: Retorna la información de una publicación específica
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
       responses:
         "200":
-          description: OK
+          description: Post encontrado
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     put:
-      description: ""
+      tags:
+        - Post
+      summary: Actualizar un post
+      description: Modifica el contenido de una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
+                type: string
+                example: "Texto actualizado del post"
       responses:
         "201":
-          description: Created
+          description: Post actualizado exitosamente
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - Post
+      summary: Eliminar un post
+      description: Elimina una publicación del sistema
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
       responses:
         "200":
-          description: OK
+          description: Post eliminado exitosamente
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
-  "/post/{id}/comments":
+          description: Error interno del servidor
+
+  /post/{id}/comment:
     get:
-      description: ""
+      tags:
+        - Post
+      summary: Obtener comentarios de un post
+      description: Retorna todos los comentarios de una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
       responses:
         "200":
-          description: OK
+          description: Comentarios obtenidos exitosamente
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
-  "/post/{id}/images":
+          description: Error interno del servidor
+
+  /post/{id}/image:
     get:
-      description: ""
+      tags:
+        - Post
+      summary: Obtener imágenes de un post
+      description: Retorna todas las imágenes asociadas a una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
       responses:
         "200":
-          description: OK
+          description: Imágenes obtenidas exitosamente
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - Post
+      summary: Agregar imágenes a un post
+      description: Asocia imágenes existentes a una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - imagenIds
             properties:
               imagenIds:
-                example: any
+                type: array
+                items:
+                  type: string
+                example: ["img1", "img2"]
       responses:
         "200":
-          description: OK
+          description: Imágenes agregadas exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - Post
+      summary: Eliminar imágenes de un post
+      description: Desasocia imágenes de una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - imagenIds
             properties:
               imagenIds:
-                example: any
+                type: array
+                items:
+                  type: string
+                example: ["img1", "img2"]
       responses:
         "200":
-          description: OK
+          description: Imágenes eliminadas exitosamente
         "500":
-          description: Internal Server Error
-  "/post/{id}/tags":
+          description: Error interno del servidor
+
+  /post/{id}/tag:
     get:
-      description: ""
+      tags:
+        - Post
+      summary: Obtener tags de un post
+      description: Retorna todas las etiquetas asociadas a una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
       responses:
         "200":
-          description: OK
+          description: Tags obtenidos exitosamente
         "404":
-          description: Not Found
+          description: Post no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - Post
+      summary: Agregar tags a un post
+      description: Asocia etiquetas existentes a una publicación
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del post
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - tagIds
             properties:
               tagIds:
-                example: any
+                type: array
+                items:
+                  type: string
+                example: ["tag1", "tag2"]
       responses:
         "200":
-          description: OK
+          description: Tags agregados exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
+
+  # ==================== POST IMAGE ====================
   /post_image/:
     get:
-      description: ""
+      tags:
+        - PostImage
+      summary: Obtener todas las imágenes
+      description: Retorna la lista completa de imágenes disponibles
       responses:
         "200":
-          description: OK
+          description: Imágenes obtenidas exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - PostImage
+      summary: Crear una nueva imagen
+      description: Registra una nueva imagen en el sistema
       parameters:
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - url
             properties:
               url:
-                example: any
+                type: string
+                example: "https://example.com/imagen.jpg"
       responses:
         "201":
-          description: Created
+          description: Imagen creada exitosamente
         "500":
-          description: Internal Server Error
-  "/post_image/{id}":
+          description: Error interno del servidor
+
+  /post_image/{id}:
     get:
-      description: ""
+      tags:
+        - PostImage
+      summary: Obtener una imagen por ID
+      description: Retorna la información de una imagen específica
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID de la imagen
       responses:
         "200":
-          description: OK
+          description: Imagen encontrada
         "404":
-          description: Not Found
+          description: Imagen no encontrada
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     put:
-      description: ""
+      tags:
+        - PostImage
+      summary: Actualizar una imagen
+      description: Modifica la URL de una imagen existente
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID de la imagen
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - url
             properties:
               url:
-                example: any
+                type: string
+                example: "https://example.com/nueva-imagen.jpg"
       responses:
         "200":
-          description: OK
+          description: Imagen actualizada exitosamente
         "404":
-          description: Not Found
+          description: Imagen no encontrada
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - PostImage
+      summary: Eliminar una imagen
+      description: Elimina una imagen del sistema
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID de la imagen
       responses:
         "200":
-          description: OK
+          description: Imagen eliminada exitosamente
         "404":
-          description: Not Found
+          description: Imagen no encontrada
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
+
+  # ==================== COMMENT ====================
   /comment/:
     get:
-      description: ""
+      tags:
+        - Comment
+      summary: Obtener todos los comentarios
+      description: Retorna la lista completa de comentarios
       responses:
         "200":
-          description: OK
+          description: Comentarios obtenidos exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - Comment
+      summary: Crear un nuevo comentario
+      description: Registra un nuevo comentario en el sistema
       parameters:
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
-              fecha:
-                example: any
+                type: string
+                example: "Texto del comentario"
               esVisible:
-                example: any
+                type: boolean
+                example: true
       responses:
         "201":
-          description: Created
+          description: Comentario creado exitosamente
         "500":
-          description: Internal Server Error
-  "/comment/{id}":
+          description: Error interno del servidor
+
+  /comment/{id}:
     get:
-      description: ""
+      tags:
+        - Comment
+      summary: Obtener un comentario por ID
+      description: Retorna la información de un comentario específico
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del comentario
       responses:
         "200":
-          description: OK
+          description: Comentario encontrado
         "404":
-          description: Not Found
+          description: Comentario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     put:
-      description: ""
+      tags:
+        - Comment
+      summary: Actualizar un comentario
+      description: Modifica el contenido de un comentario existente
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del comentario
         - name: body
           in: body
+          required: true
           schema:
             type: object
             properties:
               texto:
-                example: any
+                type: string
+                example: "Texto actualizado"
               fecha:
-                example: any
+                type: string
+                format: date-time
+                example: "2024-01-20T10:30:00Z"
               esVisible:
-                example: any
+                type: boolean
+                example: false
       responses:
         "200":
-          description: OK
+          description: Comentario actualizado exitosamente
         "404":
-          description: Not Found
+          description: Comentario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - Comment
+      summary: Eliminar un comentario
+      description: Elimina un comentario del sistema
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del comentario
       responses:
         "200":
-          description: OK
+          description: Comentario eliminado exitosamente
         "404":
-          description: Not Found
+          description: Comentario no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
+
+  # ==================== TAG ====================
   /tag/:
     get:
-      description: ""
+      tags:
+        - Tag
+      summary: Obtener todos los tags
+      description: Retorna la lista completa de etiquetas
       responses:
         "200":
-          description: OK
+          description: Tags obtenidos exitosamente
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     post:
-      description: ""
+      tags:
+        - Tag
+      summary: Crear un nuevo tag
+      description: Registra una nueva etiqueta en el sistema
       parameters:
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
+                type: string
+                example: "programacion"
       responses:
         "201":
-          description: Created
+          description: Tag creado exitosamente
         "500":
-          description: Internal Server Error
-  "/tag/{id}":
+          description: Error interno del servidor
+
+  /tag/{id}:
     get:
-      description: ""
+      tags:
+        - Tag
+      summary: Obtener un tag por ID
+      description: Retorna la información de una etiqueta específica
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del tag
       responses:
         "200":
-          description: OK
+          description: Tag encontrado
         "404":
-          description: Not Found
+          description: Tag no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     put:
-      description: ""
+      tags:
+        - Tag
+      summary: Actualizar un tag
+      description: Modifica el texto de una etiqueta existente
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del tag
         - name: body
           in: body
+          required: true
           schema:
             type: object
+            required:
+              - texto
             properties:
               texto:
-                example: any
+                type: string
+                example: "desarrollo-web"
       responses:
         "200":
-          description: OK
+          description: Tag actualizado exitosamente
         "404":
-          description: Not Found
+          description: Tag no encontrado
         "500":
-          description: Internal Server Error
+          description: Error interno del servidor
     delete:
-      description: ""
+      tags:
+        - Tag
+      summary: Eliminar un tag
+      description: Elimina una etiqueta del sistema
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del tag
       responses:
         "200":
-          description: OK
+          description: Tag eliminado exitosamente
         "404":
-          description: Not Found
+          description: Tag no encontrado
         "500":
-          description: Internal Server Error
-  "/tag/{id}/posts":
+          description: Error interno del servidor
+
+  /tag/{id}/posts:
     get:
-      description: ""
+      tags:
+        - Tag
+      summary: Obtener posts por tag
+      description: Retorna todas las publicaciones asociadas a una etiqueta
       parameters:
         - name: id
           in: path
           required: true
           type: string
+          description: ID del tag
       responses:
         "200":
-          description: OK
+          description: Posts obtenidos exitosamente
         "404":
-          description: Not Found
+          description: Tag no encontrado
         "500":
-          description: Internal Server Error
-  /:
-    get:
-      description: ""
-      responses:
-        "200":
-          description: OK
-        "500":
-          description: Internal Server Error
-    post:
-      description: ""
-      parameters:
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              texto:
-                example: any
-      responses:
-        "201":
-          description: Created
-        "500":
-          description: Internal Server Error
-  "/{id}":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-    put:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              texto:
-                example: any
-      responses:
-        "200":
-          description: OK
-        "201":
-          description: Created
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-    delete:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-  "/{id}/post":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-    post:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              texto:
-                example: any
-      responses:
-        "201":
-          description: Created
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-  "/{id}/post/{postId}/comment":
-    post:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: postId
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              texto:
-                example: any
-              fecha:
-                example: any
-              esVisible:
-                example: any
-      responses:
-        "201":
-          description: Created
-        "500":
-          description: Internal Server Error
-  "/{id}/comments":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-  "/{id}/images":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-    post:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              imagenIds:
-                example: any
-      responses:
-        "200":
-          description: OK
-        "500":
-          description: Internal Server Error
-    delete:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              imagenIds:
-                example: any
-      responses:
-        "200":
-          description: OK
-        "500":
-          description: Internal Server Error
-  "/{id}/tags":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-    post:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              tagIds:
-                example: any
-      responses:
-        "200":
-          description: OK
-        "500":
-          description: Internal Server Error
-  "/{id}/posts":
-    get:
-      description: ""
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        "200":
-          description: OK
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
+          description: Error interno del servidor

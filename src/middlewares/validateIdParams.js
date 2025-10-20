@@ -4,7 +4,8 @@ const idParamsSchema = Joi.object({
     id: Joi.number().integer().positive().required()
 })
 
-const postIdParamsSchema = Joi.object({
+const idsParamsSchema = Joi.object({
+    id: Joi.number().integer().positive().required(),
     postId: Joi.number().integer().positive().required()
 })
 
@@ -16,15 +17,19 @@ const validateIdParams = (req,res,next) => {
     next()
 }
 
-const validatePostIdParams = (req,res,next) => {
-    const {error} = postIdParamsSchema.validate(req.params)
+
+const validateIdsParams = (req, res, next) => {
+    const {error} = idsParamsSchema.validate(req.params)
     if(error){
-        return res.status(400).json({message: 'postId erroneo'})
+        return res.status(400).json({
+            message: 'Parámetros erróneos', 
+            details: error.details
+        })
     }
     next()
 }
 
 module.exports = {
     validateIdParams,
-    validatePostIdParams
+    validateIdsParams
 }
