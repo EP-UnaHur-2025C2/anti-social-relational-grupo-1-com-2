@@ -1,13 +1,13 @@
-const express = require("express");
-const db = require("../db/models");
-const router = require("./routes/usersRoutes");
-const postRouter = require("./routes/postRoutes");
-const postImageRouter = require("./routes/post_imagesRoutes");
-const commentRouter = require("./routes/commentRoutes");
-const tagRouter = require("./routes/tagRoutes");
-const swaggerUi = require("swagger-ui-express");
-const YAML = require("yamljs");
-require("dotenv").config();
+require('dotenv').config()
+const express = require('express')
+const db = require('../db/models')
+const router = require('./routes/usersRoutes')
+const postRouter = require('./routes/postRoutes')
+const postImageRouter = require('./routes/post_imagesRoutes')
+const commentRouter = require('./routes/commentRoutes')
+const tagRouter = require('./routes/tagRoutes')
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 
 const app = express();
 
