@@ -1,0 +1,636 @@
+{
+  "info": {
+    "name": "UnaHur Anti-Social Net API",
+    "description": "Colección completa de endpoints para la API de red social Anti-Social Net - Grupo 1 Comisión 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Obtener todos los usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", ""]
+            }
+          }
+        },
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickName\": \"pollito123\",\n  \"email\": \"pollito123@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", ""]
+            }
+          }
+        },
+        {
+          "name": "Obtener usuario por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickName\": \"pollito_actualizado\",\n  \"email\": \"nuevo_email@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "1"]
+            }
+          }
+        },
+        {
+          "name": "Obtener posts de un usuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/1/post",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "1", "post"]
+            }
+          }
+        },
+        {
+          "name": "Crear post para un usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Este es mi primer post desde Postman\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/1/post",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "1", "post"]
+            }
+          }
+        },
+        {
+          "name": "Comentar un post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Excelente post!\",\n  \"esVisible\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/2/post/1/comment",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["user", "2", "post", "1", "comment"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "Obtener todos los posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", ""]
+            }
+          }
+        },
+        {
+          "name": "Obtener post por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Post actualizado desde Postman\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar post",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1"]
+            }
+          }
+        },
+        {
+          "name": "Obtener comentarios de un post",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/1/comment",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "comment"]
+            }
+          }
+        },
+        {
+          "name": "Obtener imágenes de un post",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/1/image",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "image"]
+            }
+          }
+        },
+        {
+          "name": "Agregar imágenes a un post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenIds\": [\"1\", \"2\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/1/image",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "image"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar imágenes de un post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenIds\": [\"1\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/1/image",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "image"]
+            }
+          }
+        },
+        {
+          "name": "Obtener tags de un post",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/1/tag",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "tag"]
+            }
+          }
+        },
+        {
+          "name": "Agregar tags a un post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tagIds\": [\"1\", \"2\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/1/tag",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "1", "tag"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "Obtener todos los comentarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/comment/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["comment", ""]
+            }
+          }
+        },
+        {
+          "name": "Crear comentario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Nuevo comentario desde Postman\",\n  \"esVisible\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/comment/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["comment", ""]
+            }
+          }
+        },
+        {
+          "name": "Obtener comentario por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/comment/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["comment", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar comentario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"Comentario actualizado\",\n  \"esVisible\": false\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/comment/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["comment", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar comentario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/comment/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["comment", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tag",
+      "item": [
+        {
+          "name": "Obtener todos los tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tag/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", ""]
+            }
+          }
+        },
+        {
+          "name": "Crear tag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"#javascript\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/tag/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", ""]
+            }
+          }
+        },
+        {
+          "name": "Obtener tag por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tag/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar tag",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texto\": \"#desarrolloweb\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/tag/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar tag",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tag/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", "1"]
+            }
+          }
+        },
+        {
+          "name": "Obtener posts por tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tag/1/posts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", "1", "posts"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Post Image",
+      "item": [
+        {
+          "name": "Obtener todas las imágenes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post_image/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post_image", ""]
+            }
+          }
+        },
+        {
+          "name": "Crear imagen",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/imagen.jpg\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post_image/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post_image", ""]
+            }
+          }
+        },
+        {
+          "name": "Obtener imagen por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post_image/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post_image", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar imagen",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/nueva-imagen.jpg\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/post_image/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post_image", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar imagen",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post_image/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post_image", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

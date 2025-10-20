@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
      * 
     */
-    await queryInterface.bulkInsert('Tag', [
+    await queryInterface.bulkInsert('Tags', [
       {
         texto : '#elmundo',
         createdAt: new Date(),

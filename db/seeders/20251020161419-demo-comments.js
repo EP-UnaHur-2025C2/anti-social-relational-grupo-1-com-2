@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Comment', [
+    await queryInterface.bulkInsert('Comments', [
       {
         texto : 'Genial',
         createdAt: new Date(),

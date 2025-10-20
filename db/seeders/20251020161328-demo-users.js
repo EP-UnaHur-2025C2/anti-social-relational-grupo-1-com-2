@@ -14,7 +14,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('User', [
+    await queryInterface.bulkInsert('Users', [
       {
         nickName : 'Pollito12',
         email : 'pollito@gmail.com',

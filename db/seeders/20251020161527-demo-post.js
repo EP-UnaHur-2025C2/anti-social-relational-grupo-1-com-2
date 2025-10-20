@@ -13,7 +13,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-      await queryInterface.bulkInsert('Post', [
+      await queryInterface.bulkInsert('Posts', [
       {
         texto : 'La tierra es redonda',
         createdAt: new Date(),

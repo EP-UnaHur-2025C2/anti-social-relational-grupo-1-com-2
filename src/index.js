@@ -28,5 +28,5 @@ const PORT = parseInt(process.env.PORT) || 3000;
 app.listen(PORT, async () => {
   console.log(`El servidor esta corriendo en el puerto ${PORT}`);
   console.log(`Swagger Docs en http://localhost:${PORT}/api-docs`);
-  await db.sequelize.sync();
+  await db.sequelize.sync({ force: true});
 });

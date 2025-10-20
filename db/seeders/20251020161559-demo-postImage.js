@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('Post_image', [
+     await queryInterface.bulkInsert('Post_images', [
       {
         url : 'https://www.google.com/imgres?q=la%20galaxia&imgurl=https%3A%2F%2Fstatic.nationalgeographicla.com%2Ffiles%2Fstyles%2Fimage_3200%2Fpublic%2Fnationalgeographic_2191299_bx.webp%3Fw%3D1600%26h%3D1622%26p%3Dtop&imgrefurl=https%3A%2F%2Fwww.nationalgeographicla.com%2Fespacio%2F2024%2F07%2Fque-es-una-galaxia-conoce-los-8-tipos-que-existen-segun-la-nasa&docid=jnpLq92fhcSciM&tbnid=OdrMWnjJG0WXDM&vet=12ahUKEwii1MDNprOQAxXWrpUCHdsUJIsQM3oECBEQAA..i&w=1600&h=1622&hcb=2&ved=2ahUKEwii1MDNprOQAxXWrpUCHdsUJIsQM3oECBEQAA',
         createdAt: new Date(),

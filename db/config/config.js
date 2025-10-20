@@ -1,10 +1,3 @@
-//development
-const usernameDevelopment = process.env.USERNAME_DEVELOPMENT;
-const passwordDevelopment = process.env.PASSWORD_DEVELOPMENT;
-const databaseDevelopment = process.env.DATABASE_DEVELOPMENT;
-const storageDevelopment = process.env.HOST_DEVELOPMENT;
-const dialectDevelopment = process.env.DIALECT_DEVELOPMENT;
-
 module.exports = {
     development: {
         username: process.env.USERNAME_DEVELOPMENT,
