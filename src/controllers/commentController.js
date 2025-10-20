@@ -1,6 +1,5 @@
 const { Op } = require('sequelize')
 const { Post, Comment, User } = require('../../db/models')
-require('dotenv').config()
 
 const obtenerComments = async (req,res) => {
     try {
