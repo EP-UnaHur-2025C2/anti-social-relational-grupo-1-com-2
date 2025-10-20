@@ -28,7 +28,7 @@ const crearComment = async (req, res) => {
     const id = req.params.id;
     const postId = req.params.postId;
     const user = await User.findByPk(id);
-    const { texto,esVisible } = req.body;
+    const { texto, esVisible } = req.body;
     const comment = await user.createComment({
       texto,
       esVisible,
