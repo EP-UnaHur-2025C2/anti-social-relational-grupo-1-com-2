@@ -13,15 +13,15 @@ router.put('/:id',validateIdParams, postController.actualizarPost)
 router.delete('/:id',validateIdParams, postController.eliminarPost)
 
 // Rutas para comentarios relacionados con un post
-router.get('/:id/comments',validateIdParams, commentController.obtenerComentariosDelPost)
+router.get('/:id/comment',validateIdParams, commentController.obtenerComentariosDelPost)
 
 // Rutas para imágenes relacionadas con un post
-router.get('/:id/images',validateIdParams, postImageController.obtenerImagenesDelPost)
-router.post('/:id/images',validateIdParams, postImageController.agregarImagenesAlPost)
-router.delete('/:id/images',validateIdParams, postImageController.quitarImagenesDelPost)
+router.get('/:id/image',validateIdParams, postImageController.obtenerImagenesDelPost)
+router.post('/:id/image',validateIdParams, postImageController.agregarImagenesAlPost)
+router.delete('/:id/image',validateIdParams, postImageController.quitarImagenesDelPost)
 
 // Rutas para etiquetas relacionadas con un post
-router.get('/:id/tags',validateIdParams, tagController.obtenerEtiquetasDelPost)
-router.post('/:id/tags',validateIdParams, tagController.agregarEtiquetasAlPost)
+router.get('/:id/tag',validateIdParams, tagController.obtenerEtiquetasDelPost)
+router.post('/:id/tag',validateIdParams, tagController.agregarEtiquetasAlPost)
 
 module.exports = router

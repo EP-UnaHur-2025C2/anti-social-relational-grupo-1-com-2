@@ -13,7 +13,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/users', router)
+app.use('/user', router)
 app.use('/post', postRouter)
 app.use('/post_image', postImageRouter)
 app.use('/comment', commentRouter)
@@ -23,7 +23,7 @@ app.use('/tag', tagRouter)
 const swaggerDocument = YAML.load('./swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const PORT = process.env.PORT || 3000
+const PORT = parseInt(process.env.PORT) || 3000
 
 app.listen(PORT, async () => {
     console.log(`El servidor esta corriendo en el puerto ${PORT}`)
