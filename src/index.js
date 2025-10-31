@@ -19,6 +19,9 @@ app.use("/post_image", postImageRouter);
 app.use("/comment", commentRouter);
 app.use("/tag", tagRouter);
 
+const cors = require('cors')
+app.use(cors({ origin: 'http://localhost:5173' }))
+
 // Swagger UI
 const swaggerDocument = YAML.load("./swagger.yaml");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
