@@ -13,14 +13,16 @@ const app = express();
 
 app.use(express.json());
 
+const cors = require('cors')
+app.use(cors({ origin: 'http://localhost:5173' }))
+
 app.use("/user", router);
 app.use("/post", postRouter);
 app.use("/post_image", postImageRouter);
 app.use("/comment", commentRouter);
 app.use("/tag", tagRouter);
 
-const cors = require('cors')
-app.use(cors({ origin: 'http://localhost:5173' }))
+
 
 // Swagger UI
 const swaggerDocument = YAML.load("./swagger.yaml");
@@ -31,5 +33,5 @@ const PORT = parseInt(process.env.PORT) || 3000;
 app.listen(PORT, async () => {
   console.log(`El servidor esta corriendo en el puerto ${PORT}`);
   console.log(`Swagger Docs en http://localhost:${PORT}/api-docs`);
-  await db.sequelize.sync({ force: true});
+  await db.sequelize.sync({force: true});
 });
