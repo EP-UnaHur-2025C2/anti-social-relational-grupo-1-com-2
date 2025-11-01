@@ -1,8 +1,11 @@
-const { Post, User, Tag, Comment } = require("../../db/models");
+const { Post, User, Tag, Comment, Post_image } = require("../../db/models");
 
 const obtenerPosts = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: [User, Tag, Comment, Post_image]
+    });
+
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ message: "Error al obtener posts" });
@@ -13,7 +16,7 @@ const obtenerPost = async (req, res) => {
   try {
     const id = req.params.id;
     const post = await Post.findByPk(id, {
-      include: [User, Tag, Comment],
+      include: [User, Tag, Comment, Post_image],
     });
     if (!post) {
       return res.status(404).json({ message: "Post no encontrado" });
