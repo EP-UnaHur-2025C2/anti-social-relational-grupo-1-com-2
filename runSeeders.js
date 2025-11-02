@@ -19,10 +19,10 @@ async function runSeeders() {
     await require('./db/seeders/20251020161527-demo-post').up(sequelize.getQueryInterface(), sequelize.constructor)
     console.log('✅ Posts seeded')
     
-    await require('./db/seeders/20251020161509-demo-tags').up(sequelize.getQueryInterface(), sequelize.constructor)
+    await require('./db/seeders/20251020161530-demo-tags').up(sequelize.getQueryInterface(), sequelize.constructor)
     console.log('✅ Tags seeded')
     
-    await require('./db/seeders/20251020161419-demo-comments').up(sequelize.getQueryInterface(), sequelize.constructor)
+    await require('./db/seeders/20251020161700-demo-comments').up(sequelize.getQueryInterface(), sequelize.constructor)
     console.log('✅ Comments seeded')
     
     await require('./db/seeders/20251020161559-demo-postImage').up(sequelize.getQueryInterface(), sequelize.constructor)
