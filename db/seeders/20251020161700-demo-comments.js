@@ -16,22 +16,32 @@ module.exports = {
       {
         texto : 'Genial',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        userId: 2,
+        postId: 5
 
         
       },{
         texto: 'Muy cierto',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        userId: 1,
+        postId: 5
        
       },{
         texto: 'siii es cierto',
         createdAt : new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        userId: 4,
+        postId: 8
+
       },{
         texto: 'Muy bien dichoo!!!!',
         createdAt : new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        userId: 2,
+        postId: 9
+
       }
     ]);
   },

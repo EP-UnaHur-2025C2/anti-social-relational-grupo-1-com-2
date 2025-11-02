@@ -12,11 +12,11 @@ module.exports = {
       texto: {
         type: Sequelize.STRING
       },
-      fecha: {
+      /*fecha: {
         type: Sequelize.DATE
-      },
+      },*/
       esVisible: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,       
       },
       createdAt: {
         allowNull: false,
