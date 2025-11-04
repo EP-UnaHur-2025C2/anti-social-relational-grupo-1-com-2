@@ -93,7 +93,22 @@ const obtenerPostsDeLaEtiqueta = async (req, res) => {
       include: [
         {
           model: Post,
-          through: { attributes: [] },
+          include: 
+            [{
+              model: User,
+            },
+            {
+              model: Comment,
+            },
+            {
+              model: Post_image,
+            },
+            {
+              model: Tag,
+              through: { attributes: [] }
+            }
+            ],
+            through: { attributes: [] },
         },
       ],
     });
