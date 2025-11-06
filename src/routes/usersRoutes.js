@@ -10,10 +10,12 @@ const validateIdParams =
 const validateIdsParams =
   require("../middlewares/validateIdParams").validateIdsParams;
 const router = Router();
+const validarNicknameUnico = require("../middlewares/validateUsers").validarNicknameUnico
+
 
 router.get("/", usersController.obtenerUsuarios);
 router.get("/:id", validateIdParams, usersController.obtenerUsuario);
-router.post("/", validateCreateUser, usersController.crearUsuario);
+router.post("/", validateCreateUser, validarNicknameUnico, usersController.crearUsuario);
 router.put("/:id", validateIdParams, usersController.actualizarUsuario);
 router.delete("/:id", validateIdParams, usersController.eliminarUsuario);
 
@@ -27,7 +29,7 @@ router.post("/:id/post", validateIdParams, postController.crearPost);
 
 // Rutas para comentarios de un usuario
 router.post(
-  "/:id/post/:postId/comment",
+  "/:id/post/:postId/comment", 
   validateIdsParams,
   commentController.crearComment
 ); 

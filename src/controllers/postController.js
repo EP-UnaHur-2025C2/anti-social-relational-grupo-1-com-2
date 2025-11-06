@@ -3,7 +3,7 @@ const { Post, User, Tag, Comment, Post_image } = require("../../db/models");
 const obtenerPosts = async (req, res) => {
   try {
     const posts = await Post.findAll({
-      include: [User, Tag, Comment, Post_image]
+      include: [User, Tag, Comment, Post_image],
     });
 
     res.status(200).json(posts);
@@ -75,7 +75,19 @@ const obtenerPostsDelUsuario = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findByPk(userId, {
-      include: Post,
+      include: [
+        {
+          model: Post,
+          include: [
+            {
+              model: Post_image,
+            },
+            {
+              model: Tag,
+            },
+          ],
+        },
+      ],
     });
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -93,8 +105,8 @@ const obtenerPostsDeLaEtiqueta = async (req, res) => {
       include: [
         {
           model: Post,
-          include: 
-            [{
+          include: [
+            {
               model: User,
             },
             {
@@ -105,10 +117,10 @@ const obtenerPostsDeLaEtiqueta = async (req, res) => {
             },
             {
               model: Tag,
-              through: { attributes: [] }
-            }
-            ],
-            through: { attributes: [] },
+              through: { attributes: [] },
+            },
+          ],
+          through: { attributes: [] },
         },
       ],
     });
